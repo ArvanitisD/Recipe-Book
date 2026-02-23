@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-2 bg-dark text-white min-vh-100 p-3">
+            <h5 class="text-warning fw-bold">🍽️ RecipeBook</h5>
+            <hr class="text-white" />
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a href="/" class="nav-link text-white">🏠 Home</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="/recipes/add" class="nav-link text-white">➕ Add Recipe</a>
+                </li>
+            </ul>
+            <hr class="text-white" />
+            <small class="text-muted">My personal cookbook</small>
+        </div>
+
+        <div class="col-md-10 p-4">
+            @Body
+        </div>
+
+    </div>
+</div>

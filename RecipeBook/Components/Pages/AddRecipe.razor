@@ -1,0 +1,130 @@
+﻿@page "/recipes/add"
+@rendermode InteractiveServer
+@inject RecipeService RecipeService
+@inject NavigationManager Navigation
+
+<PageTitle>Add Recipe</PageTitle>
+
+<div class="container py-4">
+    <h2 class="fw-bold mb-4">➕ Add New Recipe</h2>
+
+    <EditForm Model="@newRecipe" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="alert alert-danger" />
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <InputText class="form-control" @bind-Value="newRecipe.Title" />
+            <ValidationMessage For="@(() => newRecipe.Title)" />
+        </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <InputText class="form-control" @bind-Value="newRecipe.Category" />
+            <ValidationMessage For="@(() => newRecipe.Category)" />
+        </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <InputTextArea class="form-control" @bind-Value="newRecipe.Description" rows="3" />
+            <ValidationMessage For="@(() => newRecipe.Description)" />
+        </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label">Instructions</label>
+            <InputTextArea class="form-control" @bind-Value="newRecipe.Instructions" rows="5" />
+            <ValidationMessage For="@(() => newRecipe.Instructions)" />
+        </div>
+
+        
+
+
+
+         
+        <div class="mb-3">
+            <label class="form-label">Ingredients</label>
+
+
+            @for (int i = 0; i < newRecipe.Ingredients.Count; i++)
+            {
+                var index = i;
+                <div class="row mb-2">
+                    <div class="col-md-5">
+                        <InputText class="form-control" placeholder="Name"
+                                   @bind-Value="newRecipe.Ingredients[index].Name" />
+                    </div>
+                    <div class="col-md-3">
+                        <InputText class="form-control" placeholder="Quantity"
+                                   @bind-Value="newRecipe.Ingredients[index].Quantity" />
+                    </div>
+                    <div class="col-md-3">
+                        <InputText class="form-control" placeholder="Unit"
+                                   @bind-Value="newRecipe.Ingredients[index].Unit" />
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger"
+                                @onclick="() => RemoveIngredient(index)">
+                            ✕
+                        </button>
+                    </div>
+                </div>
+            }
+
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+                    @onclick="AddIngredient">
+                + Add Ingredient
+            </button>
+            
+        </div>
+
+        <hr />
+
+        <button type="submit" class="btn btn-success">Save Recipe</button>
+        <button type="button" class="btn btn-outline-secondary ms-2"
+                @onclick="GoBack">
+            Cancel
+        </button>
+
+    </EditForm>
+</div>
+
+
+@code {
+    private RecipeFormModel newRecipe = new();
+
+    private void AddIngredient()
+    {
+        newRecipe.Ingredients.Add(new Ingredient());
+    }
+
+    private void RemoveIngredient(int index)
+    {
+        newRecipe.Ingredients.RemoveAt(index);
+    }
+
+    private async Task HandleSubmit()
+    {
+        var recipe = new Recipe
+        {
+            Title = newRecipe.Title,
+            Category = newRecipe.Category,
+            Description = newRecipe.Description,
+            Instructions = newRecipe.Instructions,
+            ImageUrl = "/images/default.jpg",
+            Ingredients = newRecipe.Ingredients
+        };
+
+        await RecipeService.AddRecipeAsync(recipe);
+        Navigation.NavigateTo("/");
+    }
+
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/");
+    }
+}
+
+

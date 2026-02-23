@@ -1,0 +1,64 @@
+﻿@* @rendermode InteractiveServer
+
+<div class="d-flex gap-1 my-2">
+    @for (int i = 1; i <= 5; i++)
+    {
+        var star = i; 
+        <span style="font-size: 2rem; cursor: pointer; color: @(star <= CurrentRating ? "gold" : "lightgray")"
+              @onclick="() => SelectRating(star)">
+            ★
+        </span>
+    }
+</div>
+
+@if (CurrentRating > 0)
+{
+    <p class="text-muted">You rated this recipe <strong>@CurrentRating / 5</strong> ⭐</p>
+}
+
+@code {
+    [Parameter] 
+    public int CurrentRating { get; set; }
+    [Parameter] 
+    public EventCallback<int> OnRatingSelected { get; set; }
+
+    private async Task SelectRating(int star)
+    {
+        CurrentRating = star;
+        await OnRatingSelected.InvokeAsync(star);
+    }
+} *@
+
+
+
+
+<div class="d-flex gap-1 my-2">
+    @for (int i = 1; i <= 5; i++)
+    {
+        var star = i;
+        <span style="font-size: 2rem; cursor: pointer; color: @(star <= CurrentRating ? "gold" : "lightgray")"
+              @onclick="() => SelectRating(star)">
+            ★
+        </span>
+    }
+</div>
+
+@if (CurrentRating > 0)
+{
+    <p class="text-muted">You rated this recipe <strong>@CurrentRating / 5</strong> ⭐</p>
+}
+
+@code {
+    [Parameter] 
+    public int RecipeId { get; set; }
+    [Parameter] 
+    public int CurrentRating { get; set; }
+    [Parameter] 
+    public EventCallback<int> OnRatingSelected { get; set; }
+
+    private async Task SelectRating(int star)
+    {
+        CurrentRating = star;
+        await OnRatingSelected.InvokeAsync(star);
+    }
+}

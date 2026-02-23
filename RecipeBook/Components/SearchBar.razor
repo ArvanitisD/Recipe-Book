@@ -1,0 +1,31 @@
+﻿<div class="input-group mb-4">
+    <span class="input-group-text">🔍</span>
+    <input type="text"
+           class="form-control"
+           placeholder="Search recipes..."
+           value="@SearchText"
+           @oninput="OnSearchChanged" />
+    @if (!string.IsNullOrEmpty(SearchText))
+    {
+        <button class="btn btn-outline-secondary"
+                type="button"
+                @onclick="ClearSearch">
+            ✕
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter] public string SearchText { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> SearchTextChanged { get; set; }
+
+    private async Task OnSearchChanged(ChangeEventArgs e)
+    {
+        await SearchTextChanged.InvokeAsync(e.Value?.ToString() ?? string.Empty);
+    }
+
+    private async Task ClearSearch()
+    {
+        await SearchTextChanged.InvokeAsync(string.Empty);
+    }
+}

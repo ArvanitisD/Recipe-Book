@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "dgSpecHash": "aDe0uetnSt0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\arvan\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.3\\microsoft.aspnetcore.app.internal.assets.10.0.3.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\10.0.3\\microsoft.aspnetcore.components.quickgrid.10.0.3.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\10.0.3\\microsoft.aspnetcore.components.webassembly.10.0.3.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.server\\10.0.3\\microsoft.aspnetcore.components.webassembly.server.10.0.3.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\microsoft.jsinterop.webassembly\\10.0.3\\microsoft.jsinterop.webassembly.10.0.3.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\newtonsoft.json\\6.0.4\\newtonsoft.json.6.0.4.nupkg.sha512",
+    "C:\\Users\\arvan\\.nuget\\packages\\quickgrid\\2.0.0\\quickgrid.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json' 6.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json 6.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'QuickGrid 2.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\arvan\\source\\repos\\RecipeBook\\RecipeBook\\RecipeBook.csproj",
+      "libraryId": "QuickGrid",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

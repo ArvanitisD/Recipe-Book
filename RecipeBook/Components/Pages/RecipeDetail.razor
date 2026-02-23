@@ -1,0 +1,71 @@
+﻿@page "/recipes/{Id:int}"
+@attribute [StreamRendering]
+@inject RecipeService RecipeService
+@inject NavigationManager Navigation
+
+<PageTitle>@recipe?.Title</PageTitle>
+
+@if (recipe is null)
+{
+  
+    <div class="container py-4">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container py-4">
+        <a href="/" class="btn btn-outline-secondary mb-4">← Back</a>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <img src="@recipe.ImageUrl" class="img-fluid rounded shadow" alt="@recipe.Title" />
+            </div>
+            <div class="col-md-6">
+                <span class="badge bg-secondary mb-2">@recipe.Category</span>
+                <h2 class="fw-bold">@recipe.Title</h2>
+                <p class="text-muted">@recipe.Description</p>
+                <hr />
+                <h5>📋 Instructions</h5>
+                <p style="white-space: pre-line">@recipe.Instructions</p>
+                <hr />
+                <h5>⭐ Your Rating</h5>
+                <StarRating RecipeId="@recipe.Id"
+                            CurrentRating="@recipe.Rating"
+                            OnRatingSelected="HandleRatingSelected"
+                            @rendermode="InteractiveServer" />
+            </div>
+        </div>
+
+        <h5>🛒 Ingredients</h5>
+        <QuickGrid Items="ingredients" class="table table-bordered table-hover">
+            <TemplateColumn Title="Ingredient">@context.Name</TemplateColumn>
+            <TemplateColumn Title="Quantity">@context.Quantity</TemplateColumn>
+            <TemplateColumn Title="Unit">@context.Unit</TemplateColumn>
+        </QuickGrid>
+    </div>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Recipe? recipe;
+    private IQueryable<Ingredient>? ingredients;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipe = await RecipeService.GetByIdAsync(Id);
+        ingredients = recipe?.Ingredients.AsQueryable();
+    }
+
+    private async Task HandleRatingSelected(int rating)
+    {
+        await RecipeService.SaveRatingAsync(Id, rating);
+        if (recipe is not null)
+            recipe.Rating = rating;
+    }
+}
