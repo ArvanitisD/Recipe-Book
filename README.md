@@ -1,0 +1,1 @@
+A modern, responsive web application for managing your personal culinary collection. Built with Blazor and .NET, this project demonstrates a clean architecture for CRUD operations, search functionality, and a seamless user experience.
